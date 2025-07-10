@@ -1,5 +1,6 @@
 import { Actress } from "./types/Actress_type";
 
+// type guards
 function isActress(actress: unknown): actress is Actress {
   if (
     actress &&
@@ -28,7 +29,7 @@ function isActress(actress: unknown): actress is Actress {
   return false
 }
 
-
+// get single actress
 async function getActress(id: number): Promise<Actress | null> {
   try {
     const response = await fetch(`http://localhost:3333/actresses/${id}`)
@@ -45,6 +46,8 @@ async function getActress(id: number): Promise<Actress | null> {
     return null
   }
 }
+
+// get all actresses
 async function getAllActresses(): Promise<object[] | null> {
   try {
     const response = await fetch(`http://localhost:3333/actresses`)
