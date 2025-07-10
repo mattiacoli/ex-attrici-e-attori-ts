@@ -15,8 +15,6 @@ function isActress(actress: unknown): actress is Actress {
     typeof actress.biography === "string" &&
     "image" in actress &&
     typeof actress.image === "string" &&
-    "id" in actress &&
-    typeof actress.id === "number" &&
     "most_famous_movies" in actress &&
     Array.isArray(actress.most_famous_movies) &&
     "awards" in actress &&
@@ -56,6 +54,18 @@ async function getAllActresses(): Promise<object[] | null> {
     }
     const actresses: [] | null = await response.json()
     return actresses
+  } catch (error) {
+    console.error(error)
+    return null
+  }
+}
+
+async function getActresses(ids: number[]): Promise<Actress[] | null> {
+  try {
+    const promises = ids.map(id => getActress(id))
+    const actresses = await Promise.all(promises)
+    const validActresses = actresses.filter((actress): actress is Actress => actress !== null)
+    return validActresses
   } catch (error) {
     console.error(error)
     return null

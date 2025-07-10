@@ -10,7 +10,7 @@ type ActressNationality =
   | "French"
   | "Indian"
   | "Spanish"
-  | " South Korean"
+  | "South Korean"
   | "Chinese"
 
 export type Actress = Person & {
