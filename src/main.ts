@@ -45,3 +45,16 @@ async function getActress(id: number): Promise<Actress | null> {
     return null
   }
 }
+async function getAllActresses(): Promise<object[] | null> {
+  try {
+    const response = await fetch(`http://localhost:3333/actresses`)
+    if (!response.ok) {
+      throw new Error(`Errore HTTP ${response.status}: ${response.statusText}`)
+    }
+    const actresses: [] | null = await response.json()
+    return actresses
+  } catch (error) {
+    console.error(error)
+    return null
+  }
+}
