@@ -1,4 +1,4 @@
-type Person = {
+export type Person = {
   readonly id: number,
   readonly name: string,
   birth_year: number,
